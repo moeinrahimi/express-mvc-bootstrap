@@ -1,0 +1,90 @@
+extends layout
+block content
+  .container
+    h2 ---
+    p تعداد شرکت کننده ها : #{votes.count}
+    table.table.table-bordered
+      thead
+        tr
+          th تلفن
+          th کیفیت وسایل ایاب و ذهاب در طول سفر
+          th کیفیت محل اقامت
+          th کیفیت غذا
+          th کیفیت سرویس خواب
+          th کیفیت گشت های تور
+          th برنامه ریزی و زمان بندی گشت های تور
+          th نحوه برخورد و سرویس دهی پرسنل کمپ
+          th قیمت های ما را به نسبت خدمات چگونه ارزیابی می کنید
+          th نحوه برخورد تور لیدر
+          th ظاهر آراسته تور لیدر
+          th حضور به موقع تور لیدر
+          th نحوه مدیریت تورلیدر
+          th اطلاعات جغرافیایی، فرهنگی و توریستی تورلیدر
+          th همکاری و همدلی در مواقع بحرانی و حس مسئولیت پذیری تور لیدر
+          th     نحوه آشنایی ؟
+          th کدام یک از قسمت های تور، برای شما بیشتر جذابیت داشت
+          th آیا تورهای ما را به دوستان و آشنایان خود توصیه می کنید
+          th امتیاز
+          
+      tbody
+
+      for vote in votes.rows
+
+        tr
+          td #{vote.mobile}
+          td #{vote.question1}
+          td #{vote.question2}
+          td #{vote.question3}
+          td #{vote.question4}
+          td #{vote.question5}
+          td #{vote.question6}
+          td #{vote.question7}
+          td #{vote.question8}
+          td #{vote.question9}
+          td #{vote.question10}
+          td #{vote.question11}
+          td #{vote.question12}
+          td #{vote.question13}
+          td #{vote.question14}
+          td #{vote.familiarQuestion}
+          td #{vote.charmQuestion}
+          td #{vote.recommendedQuestion}
+
+          td #{vote.rate}
+     
+
+
+    ul.pagination
+      -var x = 0
+      -console.log(pages)
+      -if(parseInt(currentPage) > 10){
+      - x = currentPage - 10
+      -}
+      -if(x > 0){
+      li
+        a(href="#") 0
+      li.disabled
+        a ...
+        -console.log(x,'asas')
+      -}
+      -for (x;x < pages;x++){
+
+          if (x == currentPage)
+            li.active
+              a(href="/?page="+x) #{1+x}
+          else
+            li
+              a(href="/?page=" + x) #{1+x}
+        - var val = 10+ parseInt(currentPage)
+
+        -if(x == val  ){
+          -console.log(val,currentPage,x,'inja')
+          li.disabled
+            a(href='#') ...
+           if(x <= pages)
+            li
+              a(href="/?page=" + pages) #{pages}
+          -break
+          -}
+
+      -}
